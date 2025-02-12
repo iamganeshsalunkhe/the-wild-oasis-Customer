@@ -38,7 +38,7 @@ export async function getCabinPrice(id) {
 export const getCabins = async function () {
   const { data, error } = await supabase
     .from('cabins')
-    .select('id, name, maxCapacity, regularPrice, discount, image')
+    .select('id, name, maxCapacity, regularPrice, discounts')
     .order('name');
 
   if (error) {
@@ -56,6 +56,11 @@ export async function getGuest(email) {
     .select('*')
     .eq('email', email)
     .single();
+
+    if (error) {
+      console.error(error);
+      throw new Error("Guests data could not get loaded");
+    }
 
   // No error here! We handle the possibility of no guest in the sign in callback
   return data;

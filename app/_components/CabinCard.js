@@ -1,15 +1,18 @@
 import { UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import Link from "next/link";
 
 function CabinCard({ cabin }) {
   const { id, name, maxCapacity, regularPrice, discount, image } = cabin;
 
   return (
     <div className="flex border-primary-800 border">
+      <div className="flex-1 relative">
       <Image
         src={image}
+        fill
         alt={`Cabin ${name}`}
-        className="flex-1 border-r border-primary-800"
+        className="object-cover flex-1 border-r border-primary-800"
       />
 
       <div className="flex-grow">
@@ -41,15 +44,15 @@ function CabinCard({ cabin }) {
             <span className="text-primary-200">/ night</span>
           </p>
         </div>
-
         <div className="bg-primary-950 border-t border-t-primary-800 text-right">
-          <a
+          <Link
             href={`/cabins/${id}`}
             className="border-l border-primary-800 py-4 px-6 inline-block hover:bg-accent-600 transition-all hover:text-primary-900"
           >
             Details & reservation &rarr;
-          </a>
+          </Link>
         </div>
+      </div>
       </div>
     </div>
   );
